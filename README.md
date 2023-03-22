@@ -1,8 +1,7 @@
-# OOP_Curswork
+# OOP_Coursework
 
 Student: Preskurel Yan Yurievich \
 Group number: 153504
-
 
 # This repository develops the software for accounting finance 
 
