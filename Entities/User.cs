@@ -9,10 +9,10 @@ namespace MyCourseWork_InTheConsole.Entities
 {
     public class User
     {
-        public User(int id, string name, string login, string password)
+        public User(int id, string? name, string? login, string? password)
         { 
             Id = id;
-            Name = name;              
+            Name = name;
             Login = login;
             Password = password;
         }
