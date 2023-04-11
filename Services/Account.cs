@@ -8,7 +8,7 @@ namespace MyCourseWork_InTheConsole.Services
 {
     public class Account : ICheque
     {
-        public Account(string name, double cost, DateTime time, string category)
+        public Account(string? name, double cost, DateTime time, string? category)
         {
             Name = name;
             Cost = cost;

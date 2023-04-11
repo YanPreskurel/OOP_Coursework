@@ -10,7 +10,7 @@ namespace MyCourseWork_InTheConsole.Entities
     public class User
     {
         public User(int id, string? name, string? login, string? password)
-        { 
+        {
             Id = id;
             Name = name;
             Login = login;
@@ -30,11 +30,11 @@ namespace MyCourseWork_InTheConsole.Entities
 
         private List<Income> incomes = new();
 
-        private List<Expense> expenses= new();
+        private List<Expense> expenses = new();
 
-        private List<Account> accounts= new();
+        private List<Account> accounts = new();
 
-        private List<Notification> notifications= new();
+        private List<Notification> notifications = new();
 
 
         public List<Income> GetListIncomes()
@@ -53,6 +53,12 @@ namespace MyCourseWork_InTheConsole.Entities
         public List<Notification> GetListNotifications()
         {
             return notifications;
+        }
+        public void PayDeleteNotification(Notification notification)
+        {
+            int temp = notifications.IndexOf(notification);
+            notifications.Remove(notifications[temp]);
+           // notifications.Remove(notification);
         }
     }
 }

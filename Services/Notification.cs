@@ -8,7 +8,7 @@ namespace MyCourseWork_InTheConsole.Services
 {
     public class Notification : ICheque
     {
-        public Notification(string name, double cost, DateTime time, string category)
+        public Notification(string? name, double cost, DateTime time, string? category)
         {
             Name = name;
             Cost = cost;
