@@ -56,9 +56,7 @@ namespace MyCourseWork_InTheConsole.Entities
         }
         public void PayDeleteNotification(Notification notification)
         {
-            int temp = notifications.IndexOf(notification);
-            notifications.Remove(notifications[temp]);
-           // notifications.Remove(notification);
+            notifications.Remove(notification);
         }
     }
 }

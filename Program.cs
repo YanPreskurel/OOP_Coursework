@@ -10,7 +10,7 @@ namespace MyCourseWork_InTheConsole
     {
         public static void Main()
         {
-            List<User> users = new List<User>();          
+            List<User> users = new();          
 
             while (true)
             {
@@ -19,6 +19,7 @@ namespace MyCourseWork_InTheConsole
 
                 string? enter = Console.ReadLine();
                 int userId;
+
 
                 if (enter == "1")
                 {
@@ -32,6 +33,7 @@ namespace MyCourseWork_InTheConsole
                     {
                         Console.WriteLine("Successful entry attempt");
                         userId = CheckCorrect.userId;
+                        var user = users.FirstOrDefault(u => u.Id == userId);
 
                         // дальнейшее развитие и вывод списка возможных команд
                         while (true)
@@ -44,7 +46,7 @@ namespace MyCourseWork_InTheConsole
                                               "3. Добавить счёт\n" +
                                               "4. Добавить уведомление \n" +
                                               "5. Пополнение баланса\n" +
-                                              "6. Пополнение счёта\n" + // ДОПИСАТЬ ФУНКЦИЮ
+                                              "6. Пополнение счёта\n" + 
                                               "7. Конвертация баланса кошелька\n" +   
                                               "8. Просмотр баланса кошелька\n" +
                                               "9. Просмотр списка доходов\n" +
@@ -71,10 +73,10 @@ namespace MyCourseWork_InTheConsole
                                         double cost1 = Convert.ToDouble(temp1);
                                         DateTime dateTime = DateTime.Now;
 
-                                        users[userId - 1].GetListIncomes().Add(new Income(name1, cost1, dateTime));
+                                        user.GetListIncomes().Add(new Income(name1, cost1, dateTime));
 
-                                        users[userId - 1].wallet.WalletBalance = WalletOperations.BalanceReplenishment(users[userId - 1], cost1);
-                                        users[userId - 1].wallet.EarnedMoney = WalletOperations.CountingEarnedMoney(users[userId - 1].GetListIncomes());
+                                        user.wallet.WalletBalance = WalletOperations.BalanceReplenishment(user, cost1);
+                                        user.wallet.EarnedMoney = WalletOperations.CountingEarnedMoney(users[userId - 1].GetListIncomes());
 
                                         Console.WriteLine("Your income has been successfully added\n");
                                     }
@@ -103,16 +105,16 @@ namespace MyCourseWork_InTheConsole
                                         double cost2 = Convert.ToDouble(temp2);
                                         DateTime dateTime = DateTime.Now;
 
-                                        if (cost2 > users[userId - 1].wallet.WalletBalance)
+                                        if (cost2 > user.wallet.WalletBalance)
                                         {
                                             Console.WriteLine("Error, try again\n");
                                             break;
                                         }
 
-                                        users[userId - 1].GetListExpenses().Add(new Expense(name2, cost2, dateTime, category2));
+                                        user.GetListExpenses().Add(new Expense(name2, cost2, dateTime, category2));
 
-                                        users[userId - 1].wallet.WalletBalance = WalletOperations.BalanceLoss(users[userId - 1], cost2);                                     
-                                        users[userId - 1].wallet.SpentMoney = WalletOperations.CountingSpentMoney(users[userId - 1].GetListExpenses());
+                                        user.wallet.WalletBalance = WalletOperations.BalanceLoss(user, cost2);                                     
+                                        user.wallet.SpentMoney = WalletOperations.CountingSpentMoney(user.GetListExpenses());
 
                                         Console.WriteLine("Your expense has been successfully added\n");
                                     }
@@ -141,7 +143,7 @@ namespace MyCourseWork_InTheConsole
                                         double cost3 = Convert.ToDouble(temp3);
                                         DateTime dateTime = DateTime.Now;
 
-                                        users[userId - 1].GetListAccounts().Add(new Account(name3, cost3, dateTime, category3));
+                                        user.GetListAccounts().Add(new Account(name3, cost3, dateTime, category3));
 
                                         Console.WriteLine("Your account has been successfully added\n");
                                     }
@@ -170,7 +172,7 @@ namespace MyCourseWork_InTheConsole
                                         double cost4 = Convert.ToDouble(temp4);
                                         DateTime dateTime = DateTime.Now;
 
-                                        users[userId - 1].GetListNotifications().Add(new Notification(name4, cost4, dateTime, category4));
+                                        user.GetListNotifications().Add(new Notification(name4, cost4, dateTime, category4));
 
                                         Console.WriteLine("Your notification has been successfully added\n");
                                     }
@@ -191,7 +193,7 @@ namespace MyCourseWork_InTheConsole
                                     {
                                         double cost5 = Convert.ToDouble(temp5);
 
-                                        users[userId - 1].wallet.WalletBalance = WalletOperations.BalanceReplenishment(users[userId - 1], cost5);
+                                        user.wallet.WalletBalance = WalletOperations.BalanceReplenishment(user, cost5);
 
                                         Console.WriteLine("Money successfully credited\n");
                                     }
@@ -213,9 +215,9 @@ namespace MyCourseWork_InTheConsole
 
                                     string? name6 = Console.ReadLine();
 
-                                    if (CheckCorrect.FindAccount(users[userId - 1].GetListAccounts(), name6))
+                                    if (CheckCorrect.FindAccount(user.GetListAccounts(), name6))
                                     {
-                                        foreach (var account in users[userId - 1].GetListAccounts())
+                                        foreach (var account in user.GetListAccounts())
                                         {
                                             if (account.Name == name6)
                                             {
@@ -230,13 +232,13 @@ namespace MyCourseWork_InTheConsole
                                                     double cost6 = Convert.ToDouble(temp6);
                                                     if (CheckCorrect.DeposeRange(account, cost6))
                                                     {
-                                                        if (cost6 <= users[userId - 1].wallet.WalletBalance)
+                                                        if (cost6 <= user.wallet.WalletBalance)
                                                         {
                                                             DateTime dateTime = DateTime.Now;
 
                                                             account.CurrentCost = WalletOperations.AccountReplenishment(account, cost6);
-                                                            users[userId - 1].wallet.WalletBalance = WalletOperations.BalanceLoss(users[userId - 1], cost6);
-                                                            users[userId - 1].GetListExpenses().Add(new Expense(name6, cost6, dateTime, "Fundraising"));
+                                                            user.wallet.WalletBalance = WalletOperations.BalanceLoss(user, cost6);
+                                                            user.GetListExpenses().Add(new Expense(name6, cost6, dateTime, "Fundraising"));
                                                         }
                                                         else
                                                         {
@@ -297,18 +299,18 @@ namespace MyCourseWork_InTheConsole
                                         break;
                                     }
 
-                                    users[userId - 1].wallet.WalletBalance = WalletOperations.CurrencyConverter(users[userId - 1], temp7);
-                                    users[userId - 1].wallet.EarnedMoney = WalletOperations.ConversionOfErnedAndSpentMoney(users[userId - 1], temp7, users[userId - 1].wallet.EarnedMoney);
-                                    users[userId - 1].wallet.SpentMoney = WalletOperations.ConversionOfErnedAndSpentMoney(users[userId - 1], temp7, users[userId - 1].wallet.SpentMoney);
+                                    user.wallet.WalletBalance = WalletOperations.CurrencyConverter(user, temp7);
+                                    user.wallet.EarnedMoney = WalletOperations.ConversionOfErnedAndSpentMoney(user, temp7, user.wallet.EarnedMoney);
+                                    user.wallet.SpentMoney = WalletOperations.ConversionOfErnedAndSpentMoney(user, temp7, user.wallet.SpentMoney);
 
-                                    users[userId - 1].wallet.CurrentCurrencyExchangeRate = temp7;
+                                    user.wallet.CurrentCurrencyExchangeRate = temp7;
 
                                     break;
 
                                     // конвертация в другую валюту реализована
 
                                 case "8":
-                                    Console.WriteLine("\n" + users[userId - 1].wallet.ToString() + "\n");
+                                    Console.WriteLine("\n" + user.wallet.ToString() + "\n");
                                     break;
 
                                     // Просмотр баланса кошелька реализован
@@ -316,7 +318,7 @@ namespace MyCourseWork_InTheConsole
                                 case "9":
 
                                     Console.WriteLine();
-                                    foreach (var income in users[userId - 1].GetListIncomes())
+                                    foreach (var income in user.GetListIncomes())
                                     {
                                         Console.WriteLine(income.ToString());
                                     }
@@ -326,7 +328,7 @@ namespace MyCourseWork_InTheConsole
 
                                 case "10":
                                     Console.WriteLine();
-                                    foreach (var expense in users[userId - 1].GetListExpenses())
+                                    foreach (var expense in user.GetListExpenses())
                                     {
                                         Console.WriteLine(expense.ToString());
                                     }
@@ -336,7 +338,7 @@ namespace MyCourseWork_InTheConsole
 
                                 case "11":
                                     Console.WriteLine();
-                                    foreach (var account in users[userId - 1].GetListAccounts())
+                                    foreach (var account in user.GetListAccounts())
                                     {
                                         Console.WriteLine(account.ToString());
                                     }
@@ -346,7 +348,7 @@ namespace MyCourseWork_InTheConsole
 
                                 case "12":
                                     Console.WriteLine();
-                                    foreach (var notification in users[userId - 1].GetListNotifications())
+                                    foreach (var notification in user.GetListNotifications())
                                     {
                                         Console.WriteLine(notification.ToString());
                                     }
@@ -355,7 +357,7 @@ namespace MyCourseWork_InTheConsole
                                     // Просмотр списка уведомлений реализован
                                 case "13":
                                     Console.WriteLine();
-                                    foreach (var notification in users[userId - 1].GetListNotifications())
+                                    foreach (var notification in user.GetListNotifications())
                                     {
                                         Console.WriteLine(notification.ToString());
                                     }
@@ -364,26 +366,25 @@ namespace MyCourseWork_InTheConsole
 
                                     string? name13 = Console.ReadLine();
 
-                                    if (CheckCorrect.FindNotification(users[userId - 1].GetListNotifications(), name13))
+                                    if (CheckCorrect.FindNotification(user.GetListNotifications(), name13))
                                     {
-                                        foreach (var notification in users[userId - 1].GetListNotifications())
-                                        {
-                                            if (notification.Name == name13)
-                                            {
-                                                if (notification.Cost <= users[userId - 1].wallet.WalletBalance)
-                                                {
-                                                    DateTime dateTime = DateTime.Now;
 
-                                                    users[userId - 1].wallet.WalletBalance = WalletOperations.BalanceLoss(users[userId - 1], notification.Cost);
-                                                    users[userId - 1].GetListExpenses().Add(new Expense(notification.Name,notification.Cost, dateTime, notification.Category));
-                                                    //users[userId - 1].PayDeleteNotification(notification);
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("\nError, try again\n");
-                                                    break;
-                                                }
-                                            }
+                                        var notification = user.GetListNotifications().FirstOrDefault(not => not.Name.Equals(name13));
+
+                                        if (notification.Cost <= user.wallet.WalletBalance)
+                                        {
+                                            DateTime dateTime = DateTime.Now;
+
+                                            user.wallet.WalletBalance = WalletOperations.BalanceLoss(user, notification.Cost);
+                                            user.GetListExpenses().Add(new Expense(notification.Name, notification.Cost, dateTime, notification.Category));
+                                            user.PayDeleteNotification(notification);
+
+                                            Console.WriteLine("\nNotification successfully paid\n");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\nError, try again\n");
+                                            break;
                                         }
                                     }
                                     else
