@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyCourseWork.MainPage"
+             BackgroundColor="Violet">
+
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+
+        <Label
+            Text="Hello, User!"
+            TextColor="Black"
+            FontSize="32"
+            HorizontalOptions="Center" />
+
+
+        <Entry
+            x:Name="Login"
+            TextChanged="Login_TextChanged"
+            Completed="Login_TextCompleted"
+            Placeholder="Login"
+            PlaceholderColor="LightGray"
+            FontSize="32"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+
+        <Entry
+            x:Name="Password"
+            TextChanged="Password_TextChanged"
+            Completed="Password_TextCompleted"
+            Placeholder="Password"
+            PlaceholderColor="LightGray"
+            FontSize="32"
+            ClearButtonVisibility="WhileEditing"
+            IsPassword="True"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+
+            <Button
+            x:Name="SignIn"
+            Text="Sign in"
+            Clicked="OnSignInClicked"
+            WidthRequest="110"/>
+
+            <Button
+            x:Name="SignUp"
+            Text="Sign up"
+            Clicked="OnSignUpClicked"
+            WidthRequest="110"/>
+
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>
