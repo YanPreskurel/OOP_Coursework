@@ -26,7 +26,7 @@ namespace MyCourseWork.Entities
                     {
                         return _user.wallet.WalletBalance * dollar;
                     }
-                    else if(_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if(_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return _user.wallet.WalletBalance * euro;
                     }
@@ -34,14 +34,14 @@ namespace MyCourseWork.Entities
                     {
                         return _user.wallet.WalletBalance * ruble;
                     }
-                    return _user.wallet.WalletBalance;
+                    return _user.wallet.WalletBalance ;
 
                 case "$":
                     if (_user.wallet.CurrentCurrencyExchangeRate == "BYN")
                     {
                         return _user.wallet.WalletBalance / dollar;
                     }
-                    else if (_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if (_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return _user.wallet.WalletBalance * euro / dollar;
                     }
@@ -51,7 +51,7 @@ namespace MyCourseWork.Entities
                     }
                     return _user.wallet.WalletBalance;
 
-                case "Euro":
+                case "EURO":
                     if (_user.wallet.CurrentCurrencyExchangeRate == "$")
                     {
                         return _user.wallet.WalletBalance * dollar / euro;
@@ -71,7 +71,7 @@ namespace MyCourseWork.Entities
                     {
                         return _user.wallet.WalletBalance * dollar / ruble;
                     }
-                    else if (_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if (_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return _user.wallet.WalletBalance * euro / ruble;
                     }
@@ -99,7 +99,7 @@ namespace MyCourseWork.Entities
                     {
                         return earnedOrSpentMoney * dollar;
                     }
-                    else if (_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if (_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return earnedOrSpentMoney * euro;
                     }
@@ -114,7 +114,7 @@ namespace MyCourseWork.Entities
                     {
                         return earnedOrSpentMoney / dollar;
                     }
-                    else if (_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if (_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return earnedOrSpentMoney * euro / dollar;
                     }
@@ -124,7 +124,7 @@ namespace MyCourseWork.Entities
                     }
                     return earnedOrSpentMoney;
 
-                case "Euro":
+                case "EURO":
                     if (_user.wallet.CurrentCurrencyExchangeRate == "$")
                     {
                         return earnedOrSpentMoney * dollar / euro;
@@ -144,7 +144,7 @@ namespace MyCourseWork.Entities
                     {
                         return earnedOrSpentMoney * dollar / ruble;
                     }
-                    else if (_user.wallet.CurrentCurrencyExchangeRate == "Euro")
+                    else if (_user.wallet.CurrentCurrencyExchangeRate == "EURO")
                     {
                         return earnedOrSpentMoney * euro / ruble;
                     }

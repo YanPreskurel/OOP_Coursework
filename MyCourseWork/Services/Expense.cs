@@ -25,7 +25,7 @@ namespace MyCourseWork.Services
 
         public override string ToString()
         {
-            return $"********** Expense name: {Name}, expense size: {Cost}, expense time: {Time}, expense category: {Category} **********";
+            return $"********** Expense name: {Name}, size: {Cost:0.##}, time: {Time}, category: {Category} **********";
         }
     }
 }

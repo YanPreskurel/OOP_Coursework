@@ -26,7 +26,7 @@ namespace MyCourseWork.Services
 
         public override string ToString()
         {
-            return $"********** Account name: {Name}, account size: {CurrentCost}/{Cost}, account time: {Time}, account category: {Category} **********";
+            return $"********** Account size: {CurrentCost}/{Cost}**********\n********** Account time: {Time}**********\n********** Account category: {Category} **********";
         }
     }
 }

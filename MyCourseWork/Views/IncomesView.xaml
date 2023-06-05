@@ -2,11 +2,68 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyCourseWork.Views.IncomesView"
-             Title="IncomesView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
+             Title="IncomesView"
+             BackgroundColor="Violet">
+
+    <Grid RowDefinitions="*, auto" Margin="5" RowSpacing="5">
+
+        <VerticalStackLayout VerticalOptions="Center" Spacing="10" Padding="30" Margin="60" Grid.Row="0">
+
+        <Label
+            Text="Enter the name and amount to add income"
+            TextColor="Black"
+            FontSize="25"
             HorizontalOptions="Center" />
+
+
+        <Entry
+            x:Name="IncomeName"
+            TextChanged="IncomeName_TextChanged"
+            Completed="IncomeName_TextCompleted"
+            Placeholder="Name"
+            PlaceholderColor="LightGray"
+            FontSize="32"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+
+        <Entry
+            x:Name="IncomeAmount"
+            TextChanged="IncomeAmount_TextChanged"
+            Completed="IncomeAmount_TextCompleted"
+            Placeholder="Amount"
+            PlaceholderColor="LightGray"
+            FontSize="32"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+
+        <Button
+            x:Name="AddIncome"
+            Text="+"
+            FontSize="20"
+            TextColor="White"
+            Clicked="OnClickedAddIncome"
+            HeightRequest="40"
+            WidthRequest="100"/>
+
     </VerticalStackLayout>
+
+        <Button
+            x:Name="BackFromIncomesToMain"
+            Text="Back"
+            TextColor="White"
+            Clicked="OnClickedBack"
+            HorizontalOptions="End"
+            Margin="5"
+            WidthRequest="115"
+            HeightRequest="33"
+            Grid.Row="1"
+            />
+        
+    </Grid>
+
+
 </ContentPage>

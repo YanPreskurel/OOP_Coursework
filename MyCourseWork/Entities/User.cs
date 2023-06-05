@@ -42,6 +42,7 @@ namespace MyCourseWork.Entities
         private List<Payment> payments = new();
 
 
+
         public List<Income> GetListIncomes()
         {
             return incomes;

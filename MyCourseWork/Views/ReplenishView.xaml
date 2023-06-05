@@ -5,9 +5,9 @@
              Title="ReplenishView"
              BackgroundColor="Violet">
 
-    <Grid Margin="60">
+    <Grid RowDefinitions="*, auto">
         
-        <VerticalStackLayout VerticalOptions="Center" Spacing="25">
+        <VerticalStackLayout VerticalOptions="Center" Spacing="25" Grid.Row="0" Margin="60">
 
             <Label
             Text="Enter the amount to replenish the balance"
@@ -40,7 +40,19 @@
                 HeightRequest="60"
                 />
         </VerticalStackLayout>
-        
+
+        <Button
+            x:Name="BackFromReplenishToMain"
+            Text="Back"
+            TextColor="White"
+            Clicked="OnClickedBack"
+            Margin="13"
+            HorizontalOptions="End"
+            WidthRequest="115"
+            HeightRequest="33"
+            Grid.Row="1"
+            />
+
     </Grid>
     
 </ContentPage>

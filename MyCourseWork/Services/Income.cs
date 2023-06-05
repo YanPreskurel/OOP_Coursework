@@ -23,7 +23,7 @@ namespace MyCourseWork.Services
 
         public override string ToString()
         {
-            return $"********** Income name: {Name}, income size: {Cost}, income time: {Time} **********";
+            return $"********** Income name: {Name}, size: {Cost:0.##}, time: {Time} **********";
         }
     }
 }

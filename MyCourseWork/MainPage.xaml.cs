@@ -39,12 +39,13 @@ public partial class MainPage : ContentPage
 
     private async void OnSignInClicked(object sender, EventArgs e)
     {
+        //await Shell.Current.GoToAsync($"//{nameof(MyMainPage)}", true);
         try
         {
-            IsBusy = true;
-            var auth = await App.authProvider.SignInWithEmailAndPasswordAsync(UserLogin, UserPassword);
-            App.Token = auth.FirebaseToken;
-            App.User = await this.databaseService.GetUserAsync(auth.User.LocalId);
+            //IsBusy = true;
+            //var auth = await App.authProvider.SignInWithEmailAndPasswordAsync(UserLogin, UserPassword);
+            //App.Token = auth.FirebaseToken;
+            //App.User = await this.databaseService.GetUserAsync(auth.User.LocalId);
             await Shell.Current.GoToAsync($"//{nameof(MyMainPage)}", true);
         }
         catch (Exception ex)
@@ -52,42 +53,43 @@ public partial class MainPage : ContentPage
             await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
         }
         finally
-        { 
-            IsBusy = false;
+        {
+            //IsBusy = false;
         }
     } 
     private async void OnSignUpClicked(object sender, EventArgs e)
     {
-        try
-        {
-            IsBusy = true;
-            var auth = await App.authProvider.CreateUserWithEmailAndPasswordAsync(UserLogin, UserPassword);
-            string token = auth.FirebaseToken;
+        await Shell.Current.GoToAsync($"//{nameof(MyMainPage)}", true);
+        //try
+        //{
+        //    IsBusy = true;
+        //    var auth = await App.authProvider.CreateUserWithEmailAndPasswordAsync(UserLogin, UserPassword);
+        //    string token = auth.FirebaseToken;
 
-            if (token != null)
-            {
-                await App.Current.MainPage.DisplayAlert("Success!", "User Registered successfully", "OK");
-            }
+        //    if (token != null)
+        //    {
+        //        await App.Current.MainPage.DisplayAlert("Success!", "User Registered successfully", "OK");
+        //    }
 
-            var auth1 = await App.authProvider.SignInWithEmailAndPasswordAsync(UserLogin, UserPassword);
-            App.Token = auth1.FirebaseToken;
+        //    var auth1 = await App.authProvider.SignInWithEmailAndPasswordAsync(UserLogin, UserPassword);
+        //    App.Token = auth1.FirebaseToken;
 
-            App.User = new Entities.User()
-            {
-                Id = (int)Convert.ToUInt32(auth1.User.LocalId),
-                Login = UserLogin,
-                Password = UserPassword,
-            };
-            await databaseService.AddUserAsync(App.User);
-            await Shell.Current.GoToAsync($"//{nameof(MyMainPage)}", true);
-        }
-        catch (Exception ex)
-        {
-            await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+        //    App.User = new Entities.User()
+        //    {
+        //        Id = (int)Convert.ToUInt32(auth1.User.LocalId),
+        //        Login = UserLogin,
+        //        Password = UserPassword,
+        //    };
+        //    await databaseService.AddUserAsync(App.User);
+        //    await Shell.Current.GoToAsync($"//{nameof(MyMainPage)}", true);
+        //}
+        //catch (Exception ex)
+        //{
+        //    await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+        //}
+        //finally
+        //{
+        //    IsBusy = false;
+        //}
     }
 }

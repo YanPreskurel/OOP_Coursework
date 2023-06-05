@@ -19,20 +19,12 @@ namespace MyCourseWork.Services
         public Payment() { }
         public string Name { get; set; }
         public double Cost { get; set; }
-        public DateTime Time { get; set; } // дата создания, надо будет добавить дату оплаты и считывать время, написать метод для отправки уведомления за какое-то время до оплаты
+        public DateTime Time { get; set; }
         public string Category { get; set; }
 
         public override string ToString()
         {
-            return $"********** Notification name: {Name}, notification size: {Cost}, notification time: {Time}, notification category: {Category} **********";
+            return $"********** Payment name: {Name}, size: {Cost:0.##}, time: {Time}, category: {Category} **********";
         }
-
-        //public void PayDeleteNotification(Expense _expenses) 
-        //{
-
-        //} // удаление уведомления со списка уведомлений и оплата тем самым занесение его в список расходов
-
-        //public void AddPaidNotificationToExpenses(Expense _expenses) { } // метод добавления оплаченного уведомления в список доходов  
-
     }
 }
