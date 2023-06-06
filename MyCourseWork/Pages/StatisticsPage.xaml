@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyCourseWork.Pages.StatisticsPage"
+             Title="StatisticsPage" 
+             BackgroundColor="DarkViolet"
+             Loaded="OnPageLoad">
+    
+    <Grid RowDefinitions="*, auto">
+        
+        <VerticalStackLayout Grid.Row="0" Margin="150" HorizontalOptions="Center" Spacing="150">
+
+            <Picker
+                x:Name="CategotySelection"
+                SelectedIndexChanged="OnPickerSelectedIndexChangedCategorySelection"
+                TextColor="Black"
+                FontSize="30"
+                HeightRequest="50"
+                WidthRequest="200"/>
+
+            <Label 
+                x:Name="CategotyInformation"
+                Padding="20"
+                HorizontalOptions="Center"
+                FontSize="32"   
+                Text="Category information"           
+                TextColor="Black" />
+
+        </VerticalStackLayout>
+
+        <HorizontalStackLayout Grid.Row="1" BackgroundColor="Black">
+            <Label 
+                Padding="20"
+                FontSize="32"   
+                Text="Spent:"           
+                TextColor="White" />
+            
+            <Label 
+                x:Name="SpentMoney"
+                Padding="20"
+                FontSize="32"   
+                Text="0"           
+                TextColor="White" />
+
+            <Border
+                BackgroundColor="White"/>
+            
+            <Label 
+                Padding="20"
+                FontSize="32"   
+                Text="Earned: "           
+                TextColor="White" />
+
+            <Label 
+                x:Name="EarnedMoney"
+                Padding="20"
+                FontSize="32"   
+                Text="0"           
+                TextColor="White" />
+            
+            <Border
+                BackgroundColor="White"/>
+            
+            <Label 
+                x:Name="CurrentCurrencyExchangeRate"
+                Padding="20"
+                FontSize="32"   
+                Text="BYN"           
+                TextColor="White" />
+
+        </HorizontalStackLayout>
+        
+    </Grid>
+    
+</ContentPage>

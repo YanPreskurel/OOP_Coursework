@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyCourseWork.Views.ExpensesView"
+             Title="ExpensesView"
+             BackgroundColor="Violet"
+             Loaded="OnPageLoad">
+    
+    <Grid RowDefinitions="*, auto" Margin="5" RowSpacing="5">
+
+        <VerticalStackLayout VerticalOptions="Center" Spacing="10" Padding="30" Margin="60" Grid.Row="0">
+
+            <Label
+            Text="Enter the name and amount, select the category to add expense"
+            TextColor="Black"
+            FontSize="25"
+            HorizontalOptions="Center" />
+
+
+            <Entry
+            x:Name="ExpenseName"
+            TextChanged="ExpenseName_TextChanged"
+            Completed="ExpenseName_TextCompleted"
+            Placeholder="Name"
+            PlaceholderColor="LightGray"
+            FontSize="25"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+
+            <Entry
+            x:Name="ExpenseAmount"
+            TextChanged="ExpenseAmount_TextChanged"
+            Completed="ExpenseAmount_TextCompleted"
+            Placeholder="Amount"
+            PlaceholderColor="LightGray"
+            FontSize="25"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            />
+            
+            <Label
+            Text="Category"
+            TextColor="LightGray"
+            FontSize="25"
+            HorizontalOptions="Center" />
+            
+            <Picker
+                x:Name="ExpenseCategory"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                TextColor="Black"
+                FontSize="25"
+                HorizontalOptions="Center"
+                HeightRequest="47"
+                WidthRequest="165"
+                />
+            
+            <Button
+            x:Name="AddExpense"
+            Text="+"
+            FontSize="20"
+            TextColor="White"
+            Clicked="OnClickedAddExpense"
+            HeightRequest="40"
+            WidthRequest="100"/>
+
+        </VerticalStackLayout>
+
+        <Button
+            x:Name="BackFromExpensesToMain"
+            Text="Back"
+            TextColor="White"
+            Clicked="OnClickedBack"
+            HorizontalOptions="End"
+            Margin="5"
+            WidthRequest="115"
+            HeightRequest="33"
+            Grid.Row="1"
+            />
+    </Grid>
+    
+</ContentPage>

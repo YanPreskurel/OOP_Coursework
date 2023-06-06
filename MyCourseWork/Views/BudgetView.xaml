@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyCourseWork.Views.BudgetView"
+             Title="BudgetView"
+             BackgroundColor="Violet"
+             Loaded="OnPageLoad">
+    
+    <Grid RowDefinitions="*, auto">
+        
+        <Grid RowDefinitions="auto,*" ColumnDefinitions="*,*" Grid.Row="0" ColumnSpacing="15" Margin="15" RowSpacing="5">
+
+            <Label
+                Text="Incomes"
+                TextColor="Black"
+                FontSize="25"
+                Grid.Row="0"
+                Grid.Column="0"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                />
+            
+            <Label
+                Text="Expenses"
+                TextColor="Black"
+                FontSize="25"
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                />
+            
+            <ScrollView VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" Grid.Row="1" Grid.Column="0">
+                
+                <ListView
+                    x:Name="IncomesView"/>
+                
+            </ScrollView>
+
+            <ScrollView VerticalScrollBarVisibility="Always" HorizontalScrollBarVisibility="Always" Grid.Row="1" Grid.Column="1">
+
+                <ListView
+                    x:Name="ExpensesView"/>
+                
+            </ScrollView>
+            
+        </Grid>
+
+        <Button
+            x:Name="BackFromBudgetToMain"
+            Text="Back"
+            TextColor="White"
+            Clicked="OnClickedBack"
+            HorizontalOptions="End"
+            Margin="10"
+            WidthRequest="115"
+            HeightRequest="33"
+            Grid.Row="1"
+            />
+
+    </Grid>
+
+</ContentPage>

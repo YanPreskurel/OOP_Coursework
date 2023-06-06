@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyCourseWork.Views.ReplenishView"
+             Title="ReplenishView"
+             BackgroundColor="Violet">
+
+    <Grid RowDefinitions="*, auto">
+        
+        <VerticalStackLayout VerticalOptions="Center" Spacing="25" Grid.Row="0" Margin="60">
+
+            <Label
+            Text="Enter the amount to replenish the balance"
+            TextColor="Black"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Grid.Row="0"
+            />
+
+            <Entry
+            x:Name="Replenish"    
+            TextChanged="Replenish_TextChanged"
+            Completed="Replenish_TextCompleted"
+            Placeholder="Entry"
+            PlaceholderColor="LightGray"
+            FontSize="32"
+            HeightRequest="80"           
+            ClearButtonVisibility="WhileEditing"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            Grid.Row="1" />
+
+            <Button
+                x:Name="ReplenishButton"
+                Text="Replenish"
+                FontSize="32"
+                TextColor="White"
+                Clicked="OnClickedReplenish_"
+                WidthRequest="200"
+                HeightRequest="60"
+                />
+        </VerticalStackLayout>
+
+        <Button
+            x:Name="BackFromReplenishToMain"
+            Text="Back"
+            TextColor="White"
+            Clicked="OnClickedBack"
+            Margin="13"
+            HorizontalOptions="End"
+            WidthRequest="115"
+            HeightRequest="33"
+            Grid.Row="1"
+            />
+
+    </Grid>
+    
+</ContentPage>
