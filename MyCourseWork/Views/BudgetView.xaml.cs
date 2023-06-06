@@ -8,7 +8,17 @@ public partial class BudgetView : ContentPage
 	public BudgetView()
 	{
 		InitializeComponent();
-	}
+
+        MessagingCenter.Subscribe<IncomesView>(this, "Added Income", (sender) =>
+        {
+            IncomesView.ItemsSource = App.User.GetListIncomes();
+        });
+        
+        MessagingCenter.Subscribe<ExpensesView>(this, "Added Expense", (sender) =>
+        {
+            ExpensesView.ItemsSource = App.User.GetListExpenses();
+        });
+    }
 
     private async void OnClickedBack(object sender, EventArgs e)
     {

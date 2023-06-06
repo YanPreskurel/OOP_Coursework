@@ -70,6 +70,7 @@
 
             <Picker
                 x:Name="PaymentSelection"
+                ItemsSource="{Binding paymentsNames}"
                 SelectedIndexChanged="OnPickerSelectedIndexChangedPaymentSelection"
                 TextColor="Black"
                 FontSize="20"
@@ -92,10 +93,11 @@
 
         </Grid>
 
-        <ListView
+        <Label
             x:Name="PaymentView"
             Grid.Row="1" 
-            Grid.Column="1" 
+            Text="Information of the payment"
+            Grid.Column="1"
             VerticalOptions="Center"/>
 
     </Grid>

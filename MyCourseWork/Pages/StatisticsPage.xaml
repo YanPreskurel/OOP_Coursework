@@ -3,58 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyCourseWork.Pages.StatisticsPage"
              Title="StatisticsPage" 
-             BackgroundColor="DarkViolet">
+             BackgroundColor="DarkViolet"
+             Loaded="OnPageLoad">
     
     <Grid RowDefinitions="*, auto">
         
-        <VerticalStackLayout Grid.Row="0" Margin="150">
-            
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-                <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout Grid.Row="0" Margin="150" HorizontalOptions="Center" Spacing="150">
+
+            <Picker
+                x:Name="CategotySelection"
+                SelectedIndexChanged="OnPickerSelectedIndexChangedCategorySelection"
+                TextColor="Black"
+                FontSize="30"
+                HeightRequest="50"
+                WidthRequest="200"/>
+
+            <Label 
+                x:Name="CategotyInformation"
+                Padding="20"
+                HorizontalOptions="Center"
+                FontSize="32"   
+                Text="Category information"           
+                TextColor="Black" />
 
         </VerticalStackLayout>
 
         <HorizontalStackLayout Grid.Row="1" BackgroundColor="Black">
-
+            <Label 
+                Padding="20"
+                FontSize="32"   
+                Text="Spent:"           
+                TextColor="White" />
+            
             <Label 
                 x:Name="SpentMoney"
                 Padding="20"
                 FontSize="32"   
-                HorizontalTextAlignment="Start"
-                VerticalTextAlignment="Center"
-                Text="Total: 0 BYN"           
+                Text="0"           
+                TextColor="White" />
+
+            <Border
+                BackgroundColor="White"/>
+            
+            <Label 
+                Padding="20"
+                FontSize="32"   
+                Text="Earned: "           
+                TextColor="White" />
+
+            <Label 
+                x:Name="EarnedMoney"
+                Padding="20"
+                FontSize="32"   
+                Text="0"           
                 TextColor="White" />
             
+            <Border
+                BackgroundColor="White"/>
+            
+            <Label 
+                x:Name="CurrentCurrencyExchangeRate"
+                Padding="20"
+                FontSize="32"   
+                Text="BYN"           
+                TextColor="White" />
+
         </HorizontalStackLayout>
         
     </Grid>

@@ -1,6 +1,7 @@
 using Firebase.Auth;
 using MyCourseWork.Entities;
 using MyCourseWork.Services;
+using System.Collections.ObjectModel;
 
 namespace MyCourseWork.Pages;
 
@@ -11,9 +12,11 @@ public partial class PaymentPage : ContentPage
     string category = null;
     string namePayment = null;
     Payment payment;
-    List<string> paymentsNames;
+    DatabaseService databaseService;
 
-    public void CreateListPaymentsNames(List<string> paymentsNames)
+    public ObservableCollection<string> paymentsNames { get; set; }=new ObservableCollection<string>();
+
+    public void CreateListPaymentsNames()
     {
         foreach (Payment payment in App.User.GetListPayments())
         {
@@ -21,10 +24,13 @@ public partial class PaymentPage : ContentPage
         }
     }
 
-    public PaymentPage()
+    public PaymentPage(DatabaseService databaseService)
 	{
-		InitializeComponent();
-	}
+        CreateListPaymentsNames();
+        InitializeComponent();
+        BindingContext = this;
+        this.databaseService = databaseService;
+    }
 
     private void PaymentName_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -54,6 +60,10 @@ public partial class PaymentPage : ContentPage
             double cost = Convert.ToDouble(tempCost);
 
             App.User.GetListPayments().Add(new Payment(name, cost, DateTime.Now, category));
+            paymentsNames.Add(name);
+
+            await databaseService.UpdateUserAsync(App.User);
+
         }
         else
         {
@@ -64,13 +74,11 @@ public partial class PaymentPage : ContentPage
 
     private void OnPickerSelectedIndexChangedPaymentSelection(object sender, EventArgs e)
     {
-        CreateListPaymentsNames(paymentsNames = new List<string>());
-
         var picker = sender as Picker;
 
         payment = App.User.GetListPayments().FirstOrDefault(pay => pay.Name.Equals(picker.SelectedItem.ToString()));
         namePayment = picker.SelectedItem.ToString();
-        PaymentView.ItemsSource = payment.ToString();
+        PaymentView.Text = payment.ToString();
     }
 
     private async void OnClickedPayAndDeletePayment(object sender, EventArgs e)
@@ -80,6 +88,10 @@ public partial class PaymentPage : ContentPage
             App.User.wallet.WalletBalance = WalletOperations.BalanceLoss(App.User, payment.Cost);
             App.User.GetListExpenses().Add(new Expense(payment.Name, payment.Cost, DateTime.Now, payment.Category));
             App.User.PayDeletePayment(payment);
+
+            PaymentView.Text = string.Empty;
+
+            await databaseService.UpdateUserAsync(App.User);
         }
         else
         {
@@ -91,9 +103,6 @@ public partial class PaymentPage : ContentPage
     {
         PaymentCategory.ItemsSource = App.categories;
         PaymentCategory.ItemsSource = PaymentCategory.GetItemsAsArray();
-
-        PaymentSelection.ItemsSource = paymentsNames;
-        PaymentSelection.ItemsSource = PaymentSelection.GetItemsAsArray();
 
         PaymentCategory.SelectedItem = App.categories[0];
     }

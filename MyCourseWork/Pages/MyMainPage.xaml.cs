@@ -11,7 +11,20 @@ public partial class MyMainPage : ContentPage
 	public MyMainPage()
 	{
 		InitializeComponent();
-	}
+
+        MessagingCenter.Subscribe<ReplenishView>(this, "Ballance replenished", (sender) =>
+        {
+            Balance.Text = App.User.wallet.WalletBalance.ToString("0.##");
+        });
+        MessagingCenter.Subscribe<IncomesView>(this, "Added Income", (sender) =>
+        {
+            Balance.Text = App.User.wallet.WalletBalance.ToString("0.##");
+        });
+        MessagingCenter.Subscribe<ExpensesView>(this, "Added Expense", (sender) =>
+        {
+            Balance.Text = App.User.wallet.WalletBalance.ToString("0.##");
+        });
+    }
     private void OnClickedConverter(object sender, EventArgs e)
     {
         Button button = sender as Button;

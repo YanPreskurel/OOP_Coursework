@@ -8,11 +8,12 @@ public partial class ExpensesView : ContentPage
 {
     string name = null;
     string tempCost = null;
-    string category = null; 
-
-    public ExpensesView()
+    string category = null;
+    DatabaseService databaseService;
+    public ExpensesView(DatabaseService databaseService)
 	{
         InitializeComponent();
+        this.databaseService = databaseService;
     }
 
     private void ExpenseName_TextChanged(object sender, TextChangedEventArgs e)
@@ -41,6 +42,10 @@ public partial class ExpensesView : ContentPage
             App.User.GetListExpenses().Add(new Expense(name, cost, DateTime.Now, category));
             App.User.wallet.WalletBalance = WalletOperations.BalanceLoss(App.User, cost);
             App.User.wallet.SpentMoney = WalletOperations.CountingSpentMoney(App.User.GetListExpenses());
+
+            await databaseService.UpdateUserAsync(App.User);
+
+            MessagingCenter.Send<ExpensesView>(this, "Added Expense");
         }
         else
         {

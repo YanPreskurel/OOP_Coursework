@@ -1,15 +1,18 @@
 using MyCourseWork.Entities;
 using MyCourseWork.Pages;
+using MyCourseWork.Services;
 
 namespace MyCourseWork.Views;
 
 public partial class ReplenishView : ContentPage
 {
     string tempCost = null;
-	public ReplenishView()
+    DatabaseService databaseService;
+	public ReplenishView(DatabaseService databaseService)
 	{
 		InitializeComponent();
-	}
+        this.databaseService = databaseService;
+    }
 
     private void Replenish_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -28,6 +31,10 @@ public partial class ReplenishView : ContentPage
 
             App.User.wallet.WalletBalance = WalletOperations.BalanceReplenishment(App.User, cost);
             // MyMainPage ---- Balance.Text = App.User.wallet.WalletBalance.ToString();
+            await databaseService.UpdateUserAsync(App.User);
+
+
+            MessagingCenter.Send<ReplenishView>(this, "Ballance replenished");
         }
         else
         {

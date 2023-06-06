@@ -29,19 +29,19 @@ namespace MyCourseWork.Entities
             return true;
         }
 
-        static public bool VerifyUserCorrect(List<User> _users, string login, string password) 
-        { 
-            foreach (var user in _users) 
-            {
-                if(user.Login == login && user.Password == password)
-                {                   
-                    UserId = user.Id;
+        //static public bool VerifyUserCorrect(List<User> _users, string login, string password) 
+        //{ 
+        //    foreach (var user in _users) 
+        //    {
+        //        if(user.Login == login && user.Password == password)
+        //        {                   
+        //            UserId = user.Id;
 
-                    return true;
-                }
-            }
-            return false;
-        }
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         static public bool DeposeRange(Account account, double cost)
         {

@@ -70,6 +70,7 @@
 
             <Picker
                 x:Name="AccountSelection"
+                ItemsSource="{Binding accountsNames}"
                 SelectedIndexChanged="OnPickerSelectedIndexChangedAccountSelection"
                 TextColor="Black"
                 FontSize="20"
@@ -109,10 +110,11 @@
 
         </Grid>
 
-        <ListView
+        <Label
             x:Name="AccountView"
             Grid.Row="1" 
-            Grid.Column="1" 
+            Text="Information of the account"
+            Grid.Column="1"
             VerticalOptions="Center"/>
             
     </Grid>

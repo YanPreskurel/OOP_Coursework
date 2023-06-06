@@ -1,5 +1,6 @@
 using MyCourseWork.Entities;
 using MyCourseWork.Services;
+using System.Collections.ObjectModel;
 
 namespace MyCourseWork.Pages;
 
@@ -11,18 +12,24 @@ public partial class AccountPage : ContentPage
     string tempAmount = null;
     string nameAccount = null;
     Account account;
-    List<string> accountsNames;
 
-    public void CreateListAccountsNames(List<string> accountsNames)
+    DatabaseService databaseService;
+    public ObservableCollection<string> accountsNames { get; set; } = new ObservableCollection<string>();
+
+    public void CreateListAccountsNames()
     {
         foreach (Account account in App.User.GetListAccounts())
         {
             accountsNames.Add(account.Name);
         }
     }
-    public AccountPage()
+    public AccountPage(DatabaseService databaseService)
     {
+        CreateListAccountsNames();
         InitializeComponent();
+        BindingContext = this;
+
+        this.databaseService = databaseService;
     }
 
     private void AccountName_TextChanged(object sender, TextChangedEventArgs e)
@@ -54,6 +61,9 @@ public partial class AccountPage : ContentPage
             double cost = Convert.ToDouble(tempCost);
 
             App.User.GetListAccounts().Add(new Account(name, cost, DateTime.Now, category));
+            accountsNames.Add(name);
+
+            await databaseService.UpdateUserAsync(App.User);
         }
         else
         {
@@ -71,13 +81,11 @@ public partial class AccountPage : ContentPage
     }
     private void OnPickerSelectedIndexChangedAccountSelection(object sender, EventArgs e)
     {
-        CreateListAccountsNames(accountsNames = new List<string>());
-
         var picker = sender as Picker;
 
         account = App.User.GetListAccounts().FirstOrDefault(acc => acc.Name.Equals(picker.SelectedItem.ToString()));
         nameAccount = picker.SelectedItem.ToString();
-        AccountView.ItemsSource = account.ToString();
+        AccountView.Text = account.ToString();
     }
     private async void OnClickedReplenishAccount(object sender, EventArgs e)
     {
@@ -92,7 +100,10 @@ public partial class AccountPage : ContentPage
             if(account.Cost == account.CurrentCost)
             {
                 App.User.PayDeleteAccount(account);
+
+                AccountView.Text = string.Empty;
             }
+            await databaseService.UpdateUserAsync(App.User);
         }
         else
         {
@@ -104,9 +115,6 @@ public partial class AccountPage : ContentPage
     {
         AccountCategory.ItemsSource = App.categories;
         AccountCategory.ItemsSource = AccountCategory.GetItemsAsArray();
-
-        AccountSelection.ItemsSource = accountsNames;
-        AccountSelection.ItemsSource = AccountSelection.GetItemsAsArray();
 
         AccountCategory.SelectedItem = App.categories[0];
     }

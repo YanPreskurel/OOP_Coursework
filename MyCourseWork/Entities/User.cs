@@ -10,7 +10,7 @@ namespace MyCourseWork.Entities
 {
     public class User
     {
-        public User(int id, string login, string password)
+        public User(string id, string login, string password)
         {
             Id = id;
             Login = login;
@@ -21,7 +21,7 @@ namespace MyCourseWork.Entities
         }
 
         [JsonProperty(PropertyName = "Id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "Login")]
         public string Login { get; set; }

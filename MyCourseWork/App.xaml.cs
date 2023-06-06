@@ -18,14 +18,8 @@ public partial class App : Application
         CreateListCategories(categories = new List<string>());
         authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
         firebase = new DatabaseService();
-        User = new(1, "Yan", "123");
 
         InitializeComponent();
-
-        //Routing.RegisterRoute("ReplenishView", typeof(ReplenishView));
-        //Routing.RegisterRoute("BudgetView", typeof(BudgetView));
-        //Routing.RegisterRoute("IncomesView", typeof(IncomesView));
-        //Routing.RegisterRoute("ExpensesView", typeof(ExpensesView));
 
         MainPage = new AppShell();
     }

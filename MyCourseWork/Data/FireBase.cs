@@ -18,7 +18,8 @@ namespace MyCourseWork.Data
         private IFirebaseConfig ifc = new FirebaseConfig()
         {
             AuthSecret = "AIzaSyBw1KwO850Rv3txzjkJA56j1U2EAZOhp58",
-            BasePath = "https://mauitravelagencyapp-default-rtdb.europe-west1.firebasedatabase.app/"
+            BasePath = "https://mycoursework-default-rtdb.europe-west1.firebasedatabase.app/"
+           // BasePath = "https://mycoursework-16775.firebaseapp.com/__/auth/action?mode=action&oobCode=code"
         };
 
         private IFirebaseClient client;
